@@ -75,30 +75,40 @@ Florian owns the operational backbone of TheStorefront: the Salesforce environme
 
 ---
 
-## Pillar 3 — MRR & Subscriptions
+## Pillar 3 — MRR & Subscriptions ✅ Phase 1 BUILT
 
 ### What Florian built
 - Subscription and boost system (the MRR initiative)
 - Revenue split: 68% booking commissions ($348K), 32% subscriptions ($165K) — Q1-Q2 2026
 
-### What to track
-- **MRR movement**: new subscriptions, upgrades, downgrades, churn — classic MRR waterfall
-- **Subscription health**: active vs churned vs paused, by plan type and market
-- **Boost system**: who's boosting, ROI for the LO, impact on conversion
-- **Net revenue retention**: are existing subscribers growing or shrinking?
+### Answers (confirmed 2026-05-06)
+- **Subscribers**: LOs only (landlords paying for listing subscriptions)
+- **Products**: Basic Subscription (per-listing, tiered volume pricing) + Boost (self-serve add-on for top-of-results)
+- **Billing source of truth**: Stripe (subscriptions, payments, invoices)
+- **SF link**: Custom SF objects track subscription status, linked to Account/Listing
+- **Churn visibility**: was manual/ad-hoc — now automated via dashboard
+- **KPIs**: Net MRR growth, churn reduction, upsell/expansion revenue, LTV/payback period
 
-### Possible views
-- **MRR waterfall chart**: month-over-month breakdown (new, expansion, contraction, churn)
-- **Subscription cohort table**: retention by sign-up month
-- **Active subscriptions list**: LO, plan, amount, start date, next renewal, risk signals
-- **Boost performance**: listings with active boosts, before/after inquiry rate
-- **Churn risk alert**: subscriptions approaching renewal with declining activity
+### Phase 1 — Built (MRR Foundation)
+- **MRR Summary Cards**: Current MRR, active subscribers, net new MRR, churn rate — all with MoM deltas
+- **MRR Waterfall Chart**: 12-month stacked bar chart (new, expansion, contraction, churn) with total MRR line
+- **Active Subscriptions Table**: sortable/filterable by status, plan, market — with Stripe deep links
+- **Revenue Leakage Monitor**: failed payments, expiring cards, grace period subscriptions
+- **Stripe Data Pipeline**: webhook handler + 15-min cron reconciliation + daily MRR snapshot
+- **Convex Schema**: subscriptions, subscriptionEvents, paymentFailures, mrrSnapshots, exchangeRates
 
-### Open questions for Florian
-- [ ] Where does subscription data live — SF custom objects, Stripe subscriptions, or both?
-- [ ] How is churn detected today? Does the system know in advance, or only after the fact?
-- [ ] The boost system — is the LO self-serve, or does the team activate it?
-- [ ] What's the target MRR split? Is 32% subscriptions where you want to be, or should it be higher?
+### Phase 2 — Next (Intelligence Layer)
+- **LO Health Score Engine**: composite 0-100 score (subscription health, listing activity, engagement, payment reliability)
+- **Churn Risk Dashboard**: at-risk LOs with recommended actions, SF Task creation
+- **Upsell Opportunity Finder**: Basic->Boost candidates, volume expansion candidates
+- **Subscriber Acquisition Pipeline**: hot/warm/cold non-subscribing LOs ranked by conversion likelihood
+
+### Phase 3 — Later (Market Intelligence & Automation)
+- Market-level MRR dashboard, cohort analysis, Boost performance analytics
+- Automated retention workflows (payment failure recovery, engagement drop alerts, renewal risk alerts)
+
+### Phase 4 — Future (Advanced Analytics)
+- MRR forecast (3-month projection), revenue mix tracker, executive weekly summary
 
 ---
 

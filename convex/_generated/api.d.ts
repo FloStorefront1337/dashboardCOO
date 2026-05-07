@@ -8,7 +8,13 @@
  * @module
  */
 
+import type * as crons from "../crons.js";
 import type * as health from "../health.js";
+import type * as http from "../http.js";
+import type * as mrr from "../mrr.js";
+import type * as payments from "../payments.js";
+import type * as stripe_sync from "../stripe/sync.js";
+import type * as stripe_webhooks from "../stripe/webhooks.js";
 
 import type {
   ApiFromModules,
@@ -17,7 +23,13 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
+  crons: typeof crons;
   health: typeof health;
+  http: typeof http;
+  mrr: typeof mrr;
+  payments: typeof payments;
+  "stripe/sync": typeof stripe_sync;
+  "stripe/webhooks": typeof stripe_webhooks;
 }>;
 
 /**
